@@ -15,16 +15,6 @@ class ImageProcessingApp:
         self.create_interface()
 
     def run(self):
-        # self.load_images()
-
-        # Apply smoothing filters
-        # self.apply_averaging_filter()
-        # self.apply_gaussian_filter()
-        #
-        # # Apply local thresholding methods
-        # self.apply_bernsen_thresholding()
-        # self.apply_adaptive_thresholding()
-        #
         self.root.mainloop()
 
     def ask_file(self):
@@ -81,10 +71,6 @@ class ImageProcessingApp:
         return ImageTk.PhotoImage(Image.fromarray(image).resize((350, 350)))
 
     def apply_averaging_filter(self):
-        # image_original = self.image_labels["original"].image
-        # image_array = np.array(image_original)
-        # image_averaging = cv.blur(image_array, (5, 5))
-
         image = cv.imread(self.image_path, cv.IMREAD_GRAYSCALE)
         image_averaging = cv.blur(image, (5, 5))
 
@@ -93,9 +79,6 @@ class ImageProcessingApp:
         self.image_labels["averaging"].image = image_tk
 
     def apply_gaussian_filter(self):
-        # image_original = self.image_labels["original"].image
-        # image_gaussian = cv.GaussianBlur(image_original, (5, 5), 0)
-
         image = cv.imread(self.image_path, cv.IMREAD_GRAYSCALE)
         image_gaussian = cv.GaussianBlur(image, (5, 5), 0)
 
@@ -104,8 +87,6 @@ class ImageProcessingApp:
         self.image_labels["gaussian"].image = image_tk
 
     def apply_bernsen_thresholding(self):
-        # image_original = self.image_labels["original"].image
-        # image_blurred = cv.GaussianBlur(image_original, (5, 5), 0)
         image_original = cv.imread(self.image_path, cv.IMREAD_GRAYSCALE)
         image_blurred = cv.GaussianBlur(image_original, (5, 5), 0)
 
@@ -130,7 +111,6 @@ class ImageProcessingApp:
         self.image_labels["bernsen"].image = image_tk
 
     def apply_adaptive_thresholding(self):
-        # image_original = self.image_labels["original"].image
         image_original = cv.imread(self.image_path, cv.IMREAD_GRAYSCALE)
         image_adaptive = cv.adaptiveThreshold(
             image_original, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 11, 2
